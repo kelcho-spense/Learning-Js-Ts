@@ -1,3 +1,0 @@
-# Operators
-
-Start typing here...

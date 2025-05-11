@@ -66,4 +66,14 @@
         <description>Created after removal of "API Quickstart" from API Docs</description>
         <accepts>API-quickstart.html</accepts>
     </rule>
+    <rule id="46411153">
+        <description>
+            <![CDATA[Created after removal of "<Arrow-Functions.md>" from Learning JavaScript & TypeScript]]></description>
+        <accepts>Arrow-Functions.html</accepts>
+    </rule>
+    <rule id="618cf2d9">
+        <description>
+            <![CDATA[Created after removal of "Operators" from Learning JavaScript & TypeScript]]></description>
+        <accepts>Operators.html</accepts>
+    </rule>
 </rules>

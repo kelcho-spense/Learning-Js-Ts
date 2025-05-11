@@ -8,16 +8,20 @@
 
     <toc-element topic="api-docs.md">
         <toc-element topic="Getting-Started.md"/>
+        <toc-element topic="JavaScript-Variable.md"/>
         <toc-element topic="Data-Types.md"/>
         <toc-element topic="JavaScript-Operators.md"/>
         <toc-element topic="Flow-Control-Statements.md"/>
         <toc-element topic="Arrays.md"/>
-        <toc-element topic="Functions.md"/>
+        <toc-element topic="Functions.md">
+        </toc-element>
         <toc-element topic="Objects.md"/>
+        <toc-element topic="JSON.md"/>
+        <toc-element topic="Asynchronous-Js.md"/>
         <toc-element topic="Scope-Scope-Chain-Lexical-Scope-Closure.md"/>
         <toc-element topic="Prototypes-Inheritance.md"/>
-        <toc-element topic="Operators.md">
-        </toc-element>
+        <toc-element topic="ES6.md"/>
+        <toc-element topic="Object-Oriented-Programing.md"/>
         <toc-element topic="DOM.md"/>
     </toc-element>
     <toc-element topic="TS.md">
