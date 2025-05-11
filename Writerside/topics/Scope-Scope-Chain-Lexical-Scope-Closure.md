@@ -1,0 +1,3 @@
+# Scope, Scope Chain, Lexical Scope &amp; Closure
+
+Start typing here...

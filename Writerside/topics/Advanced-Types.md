@@ -1,0 +1,3 @@
+# Advanced Types
+
+Start typing here...
