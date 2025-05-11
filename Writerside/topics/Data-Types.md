@@ -1,14 +1,14 @@
 # Data Types
 
 JavaScript has 8 Datatypes
-1. String
-2. Number
-3. Bigint
-4. Boolean
-5. Undefined
-6. Null
-7. Symbol
-8. Object
+1. `String`
+2. `Number`
+3. `Bigint`
+4. `Boolean`
+5. `Undefined`
+6. `Null`
+7. `Symbol`
+8. `Object`
 
 **The Object Datatype** :
 The object data type can contain both `built-in objects`, and `user defined objects`:

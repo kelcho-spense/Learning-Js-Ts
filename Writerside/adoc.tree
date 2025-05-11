@@ -23,9 +23,10 @@
         <toc-element topic="ES6.md"/>
         <toc-element topic="Object-Oriented-Programing.md"/>
         <toc-element topic="DOM.md"/>
+        <toc-element topic="JS-Web-APIs.md"/>
     </toc-element>
     <toc-element topic="TS.md">
-        <toc-element topic="Getting-Started-with-TS.md"/>
+        <toc-element topic="setting-up-ts-project.md"/>
         <toc-element topic="Typescript-Basics.md"/>
         <toc-element topic="Strings.md"/>
         <toc-element topic="Numbers.md"/>
@@ -33,14 +34,18 @@
         <toc-element topic="Boolean.md"/>
         <toc-element topic="Null-Undefined.md"/>
         <toc-element topic="Objects-in-Ts.md"/>
+        <toc-element topic="Arrays-in-TS.md"/>
+        <toc-element topic="Custom-Types.md"/>
         <toc-element topic="Special-Types.md"/>
-        <toc-element topic="Advanced-Types.md"/>
         <toc-element topic="Typescript-Operators.md"/>
         <toc-element topic="Flow-Control-Statements-in-TS.md"/>
+        <toc-element topic="JSON-.md"/>
+        <toc-element topic="Asynchronous-TS.md"/>
+        <toc-element topic="Advanced-Types.md"/>
         <toc-element topic="Functions-in-Ts.md"/>
-        <toc-element topic="Custom-Types.md"/>
         <toc-element topic="Classes.md"/>
         <toc-element topic="Generics.md"/>
         <toc-element topic="DOM-in-TS.md"/>
+        <toc-element topic="JS-Web-APIs-.md"/>
     </toc-element>
 </instance-profile>

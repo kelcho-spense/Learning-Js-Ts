@@ -76,4 +76,9 @@
             <![CDATA[Created after removal of "Operators" from Learning JavaScript & TypeScript]]></description>
         <accepts>Operators.html</accepts>
     </rule>
+    <rule id="4f3ef0d">
+        <description>
+            <![CDATA[Created after removal of "Getting Started with TS" from Learning JavaScript & TypeScript]]></description>
+        <accepts>Getting-Started-with-TS.html</accepts>
+    </rule>
 </rules>
