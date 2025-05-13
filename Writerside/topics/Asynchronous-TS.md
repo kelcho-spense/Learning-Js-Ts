@@ -11,23 +11,27 @@ A **callback** is a function that is passed into another function as an argument
 #### Example: Using Callbacks
 
 ```ts
-function fetchData(callback: (data: string) => void): void {
-    setTimeout(() => {
-        const data: string = "Fetched Data";
-        callback(data);  // Callback function is called after 2 seconds
-    }, 2000);
+function greetUser(myName: string, displayMessage: (message:string) => void): void {
+    const greeting: string = `Hello, ${myName}! Welcome to our application.`;
+    displayMessage(greeting);
 }
 
-fetchData((result: string): void => {
-    console.log(result);  // This will log "Fetched Data" after 2 seconds
-});
+function displayMessage(message: string): void {
+    console.log(message);
+}
+
+greetUser("Alice", displayMessage);
 ```
 
 #### Explanation:
 
-* `fetchData` simulates an asynchronous operation using `setTimeout`.
-* The callback function is passed as an argument to `fetchData` and is executed after 2 seconds, receiving the fetched data as an argument.
+`greetUser` is a function that takes two parameters: 
+*  `myName`: a string.
+* displayMessage as  `callback`: a function that takes a string and returns nothing (void).
+* 
+* `displayMessage` is a simple function that logs the message.
 
+When you call greetUser("Alice", displayMessage), it constructs the greeting and passes it to the callback.
 ---
 
 ### **2. Promises**
@@ -37,27 +41,59 @@ A **Promise** is a modern way to handle asynchronous operations. A promise repre
 #### Example: Using Promises
 
 ```ts
-function fetchData(): Promise<string> {
+interface Data {
+    id: number;
+    name: string;
+}
+
+// Sample data
+const data: Data[] = [
+    { id: 1, name: "John Doe" },
+    { id: 2, name: "Jane Smith" },
+    { id: 3, name: "Alice Johnson" },
+];
+
+// Simulates fetching data from a server
+function fetchData(shouldFail: boolean): Promise<Data[]> {
     return new Promise((resolve, reject) => {
+        console.log("Starting fetch...");
+
         setTimeout(() => {
-            const data: string = "Fetched Data";
-            resolve(data);  // Resolve the promise with data
-        }, 2000);
+            if (shouldFail) {
+                reject(new Error("❌ Failed to fetch data"));  // Simulate error
+            } else {
+                resolve(data);  // Return data successfully
+            }
+        }, 2000);  // Simulate network delay (2 seconds)
     });
 }
 
-fetchData().then((result: string) => {
-    console.log(result);  // This will log "Fetched Data" after 2 seconds
-}).catch((error: Error) => {
-    console.error(error);  // This will handle any errors
-});
+// Call fetchData with true or false to simulate success/failure
+fetchData(false)  // Change to `true` to simulate an error
+    .then((result: Data[]) => {
+        console.log("✅ Data fetched successfully:");
+        result.forEach(item => {
+            console.log(`- ID: ${item.id}, Name: ${item.name}`);
+        });
+    })
+    .catch((error: Error) => {
+        console.error(`🚫 Error occurred: ${error.message}`);
+    })
+    .finally(() => {
+        console.log("🔚 Fetch operation completed.");
+    });
 ```
 
-#### Explanation:
+####  Key Learning Points:
 
-* `fetchData` returns a promise that resolves with the data `"Fetched Data"` after 2 seconds.
-* The `.then()` method handles the result when the promise is successfully resolved.
-* The `.catch()` method is used to handle any potential errors.
+* `fetchData()` returns a `Promise<Data[]`>.
+* `.then()` handles successful resolution.
+* `.catch()` handles errors (rejections).
+* `.finally()` runs no matter what — 
+
+#### Try It Yourself:
+* Change fetchData(false) to fetchData(true) to test error handling.
+* Add a loading message before the call and clear it after finally.
 
 ---
 
@@ -71,22 +107,35 @@ The `async/await` syntax allows you to write asynchronous code in a more synchro
 #### Example: Using Async/Await
 
 ```ts
-async function fetchData(): Promise<void> {
-    const data: string = await new Promise((resolve) => {
-        setTimeout(() => {
-            resolve("Fetched Data");
-        }, 2000);
-    });
-    console.log(data);  // This will log "Fetched Data" after 2 seconds
+// This works in environments that support fetch (e.g., browser or Node.js with node-fetch or built-in fetch in Node 18+)
+
+// Define an async function to fetch data
+async function fetchUser(userId: number): Promise<void> {
+    try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const userData = await response.json();
+        console.log("User data:", userData);
+    } catch (error) {
+        console.error("Failed to fetch user:", error);
+    }
 }
 
-fetchData();
+// Call the async function
+fetchUser(1);
+
 ```
 
 #### Explanation:
 
-* The `fetchData` function is marked as `async`, allowing you to use `await` inside it.
-* `await` pauses the function execution until the promise resolves with `"Fetched Data"`, making the code more readable than using `.then()` with promises.
+* `fetch` is used to make an HTTP request to the API.
+* `await` pauses execution until the Promise resolves.
+* `try/catch` handles any errors (e.g., network failure or invalid response).
+* The function `fetchUser` is `async`, so you can `await` inside it.
 
 ---
 
