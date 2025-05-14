@@ -13,20 +13,22 @@ In TypeScript, an **object** is a collection of key-value pairs. You can define 
 #### Example:
 
 ```ts
-interface Person {
+class Person {
+    // Properties
     name: string;
     age: number;
-    greet(): void;
-}
-
-const person: Person = {
-    name: "John",
-    age: 30,
-    greet: function() {
-        console.log("Hello, " + this.name);
+    gender: string;
+    // constructor
+    constructor(_name: string, _age: number, _gender: string) {
+        this.name = _name;
+        this.age = _age;
+        this.gender = _gender;
     }
-};
-
+    // methods
+    greet():void {
+        console.log(`hello , my name is ${this.name} and I'm ${this.age} years old.`)
+    }
+}
 // Accessing object properties
 console.log(person.name); // John
 console.log(person.age);  // 30
@@ -118,6 +120,77 @@ dog.speak();  // "Max barks"
 * `super(name)` calls the constructor of the parent class.
 * The `speak()` method is overridden in `Dog` to provide specific functionality.
 
+#### Bank Account Scenario
+```typescript
+
+// parent class
+class BankAccount {
+    constructor(public balance: number, public accountHolder: string) {
+    }
+
+    public deposit(amount: number): void {
+        if (this.validateBalance(amount)) {
+            this.balance += amount   // balance = balance + amount  
+        }
+    }
+
+    public getBalance(): number {
+        return this.balance
+    }
+
+    public withDraw(amount: number): number | string {
+        if (this.canWithDraw(amount)) {
+            return this.balance -= amount   // balance = balance - amount         
+        } else {
+            return `your account balance : ${this.balance} is less than the amount you want to withdraw : ${amount}`
+        }
+    }
+
+    private validateBalance(amount: number): boolean {
+        return amount > 0;
+    }
+
+    private canWithDraw(amountToWithDraw: number): boolean {
+        return this.balance > amountToWithDraw
+    }
+
+}
+
+// child class
+class SavingAccount extends BankAccount {
+    public interestRate: number;
+    constructor(accountHolder: string, balance: number, _interestRate: number) {
+        super(balance, accountHolder)
+        this.interestRate = _interestRate
+    }
+
+    public getBalance(): number {
+        return this.balance
+    }
+
+    public calculateInterest(): void {
+        const interest = this.getBalance() * this.interestRate;
+        console.log(`interest earned : ${interest}`)
+        this.balance += interest
+    }
+}
+
+
+// const kevinAccount = new BankAccount(300, "Keren");
+// console.log(kevinAccount.getBalance())
+// kevinAccount.deposit(1000)
+// console.log(kevinAccount.getBalance())
+// console.log(kevinAccount.withDraw(1000))
+// console.log(kevinAccount.getBalance())
+
+const kerenAccount = new SavingAccount("keren", 300, 0.05)
+
+kerenAccount.deposit(1000)
+
+kerenAccount.calculateInterest()
+
+console.log(kerenAccount.getBalance())
+```
 ---
 
 ### 4. **Access Modifiers: Public, Private, and Protected**

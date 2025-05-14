@@ -1,300 +1,105 @@
-# Advanced Types
+# OOP Practise Scenarios
 
-### **Advanced Types in TypeScript**
-
-TypeScript provides several advanced types and features to help manage complex data structures while maintaining type safety. Here’s an explanation of advanced types in TypeScript with examples:
+Great — let's elevate the **complexity** of each OOP scenario. Below are **enhanced versions** of the same ideas, introducing deeper interactions, more OOP principles (inheritance, encapsulation, polymorphism, abstraction), and even some design patterns where applicable.
 
 ---
 
-### 1. **Literal Types**
+### 🔷 1. **Advanced Library Management System**
 
-Literal types allow you to specify the exact value a string, number, or boolean variable can hold, making the type more specific than the general `string`, `number`, or `boolean`.
+**Description:**
+Design a system for managing a full-service library, including book lending, user accounts, overdue fines, and digital resources.
 
-#### Example:
+#### Key Elements:
 
-```typescript
-let myName: "John" = "John";  // The value must always be "John"
-myName = "Alice";  // Error: Type '"Alice"' is not assignable to type '"John"'
+* **`LibraryItem` (abstract)** → base for `Book`, `DVD`, `EBook`
+* **`UserAccount`** → handles login, borrowing history, fine calculation
+* **`Borrowable` Interface** → enforces `checkOut()` and `returnItem()` for physical items only
+* **`Librarian` vs `Member` (inherit from `User`)**
+* **Feature:** Fine is auto-calculated based on return date
 
-let isActive: true = true;  // The value must always be `true`
-isActive = false;  // Error: Type 'false' is not assignable to type 'true'
-```
-
-In this example, `myName` is strictly limited to the string `"John"`, and `isActive` can only be `true`.
-
----
-
-### 2. **Union Types**
-
-Union types allow a variable to hold values of more than one type. You can define a union type using the pipe (`|`) symbol.
-
-#### Example:
-
-```typescript
-let result: string | number;
-
-result = "Hello, world!";  // Valid
-result = 42;  // Valid
-result = true;  // Error: Type 'boolean' is not assignable to type 'string | number'
-```
-
-In this example, the variable `result` can either be a `string` or a `number`.
+> 🔹 *Polymorphism* through multiple item types
+> 🔹 *Encapsulation* of fine logic in `UserAccount`
+> 🔹 *Abstraction* using an abstract `LibraryItem`
+> 🔹 *Interface* for borrowable vs digital-only items
 
 ---
 
-### 3. **Intersection Types**
+### 🔷 2. **Advanced E-Commerce System**
 
-Intersection types allow you to combine multiple types into one. A variable of an intersection type must satisfy all of the combined types.
+**Description:**
+Create a multi-vendor e-commerce platform supporting different product types, user roles (admin, customer, seller), discounts, and order tracking.
 
-#### Example:
+#### Key Elements:
 
-```typescript
-type Person = {
-  name: string;
-  age: number;
-};
+* **`Product` (abstract)** → extended by `ElectronicProduct`, `ClothingProduct`, `FurnitureProduct`
+* **`User`** → extended by `Admin`, `Seller`, `Customer`
+* **`Cart`** → holds products, calculates total with tax and discount
+* **`Order`** → links to `Shipping`, `Payment`, and `Customer`
+* **Strategy Pattern:** Discount strategy applied at checkout
 
-type Address = {
-  street: string;
-  city: string;
-};
-
-type PersonWithAddress = Person & Address;
-
-const personWithAddress: PersonWithAddress = {
-  name: "Alice",
-  age: 30,
-  street: "123 Main St",
-  city: "Wonderland",
-};
-```
-
-In this example, the `PersonWithAddress` type combines the `Person` and `Address` types, meaning the object must have both personal information and address details.
+> 🔹 *Inheritance* for product and user types
+> 🔹 *Polymorphism* for payment (e.g. card, wallet, COD)
+> 🔹 *Encapsulation* of cart/checkout logic
+> 🔹 *Design Patterns:* Strategy (for discount), Factory (for product creation)
 
 ---
 
-### 4. **Instanceof Type Guard**
+### 🔷 3. **University Registration & Learning Management System**
 
-The `instanceof` operator in TypeScript can be used as a type guard to narrow the type of an object based on its class.
+**Description:**
+Build a system that manages course registration, class schedules, grading, and content distribution. Include roles for students, professors, and administrators.
 
-#### Example:
+#### Key Elements:
 
-```typescript
-class Dog {
-  bark() {
-    console.log("Woof!");
-  }
-}
+* **`Person`** → base for `Student`, `Professor`, `Admin`
+* **`Course`** → includes lectures, assignments, enrolled students
+* **`Enrollment` Class** → maps students to courses with grading logic
+* **`Assessment` Interface** → implemented by `Quiz`, `Assignment`, `Project`
+* **Notification System** for reminders and feedback
 
-class Cat {
-  meow() {
-    console.log("Meow!");
-  }
-}
-
-function animalSound(animal: Dog | Cat) {
-  if (animal instanceof Dog) {
-    animal.bark();
-  } else {
-    animal.meow();
-  }
-}
-
-const dog = new Dog();
-const cat = new Cat();
-
-animalSound(dog);  // Output: Woof!
-animalSound(cat);  // Output: Meow!
-```
-
-Here, `instanceof` is used to determine whether the object is an instance of the `Dog` or `Cat` class, and we can call the respective method based on the type.
+> 🔹 *Abstraction* for people and content
+> 🔹 *Polymorphism* in assessments
+> 🔹 *Encapsulation* of grade calculations
+> 🔹 *Composite Pattern* for course content (modules contain lectures, assignments)
 
 ---
 
-### 5. **Discriminated Unions (Tagged Unions)**
+### 🔷 4. **Ride Sharing System with Dynamic Pricing & Ratings**
 
-Discriminated unions allow you to use a common property (tag) to distinguish between different types within a union. This is useful when you have different object shapes but share a common property that acts as a discriminator.
+**Description:**
+Create a full ride-sharing platform with user authentication, GPS location tracking, ride history, and driver/passenger matching logic.
 
-#### Example:
+#### Key Elements:
 
-```typescript
-type Circle = {
-  shape: "circle";
-  radius: number;
-};
+* **`User`** → parent for `Driver`, `Passenger`
+* **`Ride`** → includes pickup/dropoff, fare calculation, ratings
+* **Dynamic Pricing Strategy** based on time of day, traffic
+* **Vehicle Management** for drivers
+* **Matching Algorithm** → nearest driver selection
 
-type Square = {
-  shape: "square";
-  sideLength: number;
-};
-
-type Shape = Circle | Square;
-
-function area(shape: Shape): number {
-  if (shape.shape === "circle") {
-    return Math.PI * shape.radius ** 2;
-  } else {
-    return shape.sideLength ** 2;
-  }
-}
-
-const circle: Circle = { shape: "circle", radius: 10 };
-const square: Square = { shape: "square", sideLength: 5 };
-
-console.log(area(circle));  // Output: 314.1592653589793
-console.log(area(square));  // Output: 25
-```
-
-In this example, the `shape` property serves as the discriminator to distinguish between `Circle` and `Square`. The function `area` can safely handle the different types based on this property.
+> 🔹 *Polymorphism* in pricing strategies
+> 🔹 *Encapsulation* of rating and fare logic
+> 🔹 *Strategy Pattern* for fare calculation
+> 🔹 *Factory Pattern* for creating ride instances
 
 ---
 
-### 6. **Typeof Type Guard**
+### 🔷 5. **Intelligent Zoo Management System**
 
-The `typeof` operator in TypeScript can be used as a type guard to narrow the type of a variable, especially when working with primitive types like `string`, `number`, `boolean`, etc.
+**Description:**
+Develop a smart zoo system with intelligent feeding schedules, sensor-driven habitat monitoring, and animal behavior tracking.
 
-#### Example:
+#### Key Elements:
 
-```typescript
-function printLength(value: string | number) {
-  if (typeof value === "string") {
-    console.log(value.length);
-  } else {
-    console.log(value.toString().length);
-  }
-}
+* **`Animal` (abstract)** → extended by `Bird`, `Mammal`, `Reptile`
+* **`Habitat`** → includes temperature, feeding schedule, cleanliness
+* **Observer Pattern:** Animal health alerts via sensors
+* **`FeedingStrategy` Interface** → different feeding logic for herbivores, carnivores, omnivores
+* **Zookeeper & Vet Roles** for monitoring
 
-printLength("Hello");  // Output: 5
-printLength(12345);     // Output: 5
-```
-
-Here, `typeof` helps to differentiate between `string` and `number` types and appropriately handles each case.
+> 🔹 *Polymorphism* in animal behavior and feeding
+> 🔹 *Encapsulation* of habitat control
+> 🔹 *Observer Pattern* for real-time alerts
+> 🔹 *Interface Segregation* for specific animal actions (fly, swim, hibernate)
 
 ---
-
-### 7. **Type Guards**
-
-Type guards are used in TypeScript to narrow the type of a variable within a specific scope, allowing more precise type checking. They can be created using `typeof`, `instanceof`, or user-defined type guards.
-
-#### Example:
-
-```typescript
-function isString(value: unknown): value is string {
-  return typeof value === "string";
-}
-
-function printString(value: unknown) {
-  if (isString(value)) {
-    console.log(value.toUpperCase());
-  } else {
-    console.log("Not a string");
-  }
-}
-
-printString("Hello");  // Output: HELLO
-printString(123);      // Output: Not a string
-```
-
-Here, `isString` is a **user-defined type guard**. It returns `true` if the value is a string, and TypeScript narrows the type of `value` within the `if` block.
-
----
-
-### 8. **Nullable Types / Non-Nullable Types**
-
-In TypeScript, the `null` and `undefined` types are separate, but they can be used in type annotations. You can control whether a type allows `null` or `undefined` using **nullable types**.
-
-#### Example of Nullable Types:
-
-```typescript
-let name: string | null = "John";
-name = null;  // Valid
-
-let age: number | undefined = 25;
-age = undefined;  // Valid
-```
-
-#### Example of Non-Nullable Types:
-
-```typescript
-let username: string = "Alice";
-username = null;  // Error: Type 'null' is not assignable to type 'string'
-```
-
-You can use `--strictNullChecks` in TypeScript to enable stricter null checks and avoid assigning `null` or `undefined` to variables unless explicitly allowed.
-
----
-
-### 9. **Type Assertions**
-
-Type assertions allow you to tell TypeScript to treat a value as a specific type, overriding the inferred type when you're certain of the type of a value.
-
-#### Syntax:
-
-```typescript
-let value = "hello" as string;  // Type assertion using 'as'
-let numberValue = <number>5;    // Type assertion using '<>'
-```
-
-#### Example:
-
-```typescript
-const someValue: any = "This is a string";
-const stringLength: number = (someValue as string).length;
-
-console.log(stringLength);  // Output: 16
-```
-
-Here, `someValue` is treated as a `string` using type assertion so that we can call `length` on it.
-
----
-
-### 10. **TypeScript Enum**
-
-An **enum** in TypeScript is a way of defining a set of named constants. Enums can be numeric or string-based.
-
-#### Numeric Enum Example:
-
-```typescript
-enum Direction {
-  Up = 1,
-  Down,
-  Left,
-  Right,
-}
-
-let move: Direction = Direction.Up;
-console.log(move);  // Output: 1
-```
-
-Here, `Direction` is an enum, and each direction has a numeric value associated with it. By default, the first member of an enum is assigned `0`, and subsequent members increment by `1` unless explicitly defined.
-
-#### String Enum Example:
-
-```typescript
-enum Status {
-  Active = "ACTIVE",
-  Inactive = "INACTIVE",
-}
-
-let currentStatus: Status = Status.Active;
-console.log(currentStatus);  // Output: "ACTIVE"
-```
-
-In this example, `Status` is a string enum, and each value is assigned a specific string value.
-
----
-
-### **Summary**
-
-* **Literal Types**: Allow specifying exact values for variables (`"John"`, `42`, `true`).
-* **Union Types**: Allow variables to hold multiple types (`string | number`).
-* **Intersection Types**: Combine multiple types into one (`Person & Address`).
-* **Instanceof Type Guard**: Narrow the type of a class instance using `instanceof`.
-* **Discriminated Unions**: Use a shared property to differentiate between union types (tagged unions).
-* **Typeof Type Guard**: Narrow the type of a variable using the `typeof` operator.
-* **Type Guards**: Functions that narrow types within specific blocks of code.
-* **Nullable Types**: Types that can also hold `null` or `undefined`.
-* **Type Assertions**: Used to tell TypeScript to treat a value as a specific type.
-* **Enums**: A way to define sets of named constants, either numeric or string-based.
-
-These advanced types help you work with more complex scenarios in TypeScript while maintaining type safety.

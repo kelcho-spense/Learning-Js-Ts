@@ -41,9 +41,9 @@
         <toc-element topic="Flow-Control-Statements-in-TS.md"/>
         <toc-element topic="JSON-.md"/>
         <toc-element topic="Asynchronous-TS.md"/>
-        <toc-element topic="Advanced-Types.md"/>
         <toc-element topic="Functions-in-Ts.md"/>
         <toc-element topic="Classes.md"/>
+        <toc-element topic="Advanced-Types.md"/>
         <toc-element topic="Generics.md"/>
         <toc-element topic="DOM-in-TS.md"/>
         <toc-element topic="JS-Web-APIs-.md"/>
