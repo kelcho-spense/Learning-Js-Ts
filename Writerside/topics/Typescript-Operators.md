@@ -8,12 +8,12 @@ Here’s a more **strongly typed** approach to explaining **TypeScript Operators
 
 Arithmetic operators are used to perform mathematical calculations, such as addition, subtraction, multiplication, etc.
 
-#### Types:
+#### Types: {id="types_1"}
 
 * **Operand Types**: `number`
 * **Return Type**: `number`
 
-#### Example:
+#### Example: {id="example_1"}
 
 ```typescript
 let x: number = 5;
@@ -35,12 +35,12 @@ console.log(sum, diff, prod, quotient, remainder, power);
 
 These operators are used to convert a variable to a number and to negate a number.
 
-#### Types:
+#### Types: {id="types_2"}
 
 * **Unary Plus (`+`)**: Converts `string` or `boolean` to `number`.
 * **Unary Minus (`-`)**: Negates a `number`.
 
-#### Example:
+#### Example: {id="example_2"}
 
 ```typescript
 let str: string = "5";
@@ -58,12 +58,12 @@ console.log(num, negative);
 
 These operators are used to increase or decrease a variable’s value by `1`.
 
-#### Types:
+#### Types: {id="types_3"}
 
 * **Operand Type**: `number`
 * **Return Type**: `number`
 
-#### Example:
+#### Example: {id="example_3"}
 
 ```typescript
 let count: number = 0;
@@ -87,12 +87,12 @@ console.log(count);  // Output: 0
 
 These operators are used to compare two values.
 
-#### Types:
+#### Types: {id="types_4"}
 
 * **Operand Types**: `number`, `string`, `boolean`, `object`, etc.
 * **Return Type**: `boolean`
 
-#### Example:
+#### Example: {id="example_4"}
 
 ```typescript
 let a: number = 10;
@@ -112,7 +112,7 @@ console.log(isGreaterThan, isLessThan, isEqualTo, isNotEqual);
 
 These operators check for value and type equality.
 
-#### Types:
+#### Types: {id="types_5"}
 
 * **Operand Types**: `number`, `string`, `boolean`, `object`, etc.
 * **Return Type**: `boolean`
@@ -135,12 +135,12 @@ console.log(looseEquality, strictEquality);  // Output: true, false
 
 The ternary operator provides a shorthand for an `if-else` statement.
 
-#### Types:
+#### Types: {id="types_6"}
 
 * **Operand Types**: `boolean`
 * **Return Type**: Depends on the expressions
 
-#### Example:
+#### Example: {id="example_5"}
 
 ```typescript
 let age: number = 18;

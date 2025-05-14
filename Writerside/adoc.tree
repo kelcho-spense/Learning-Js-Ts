@@ -46,7 +46,7 @@
         <toc-element topic="Advanced-Types.md"/>
         <toc-element topic="Generics.md"/>
         <toc-element topic="DOM-in-TS.md"/>
-        <toc-element topic="DOM-Moview-Project.md"/>
         <toc-element topic="JS-Web-APIs-.md"/>
+        <toc-element topic="DOM-Moview-Project.md"/>
     </toc-element>
 </instance-profile>

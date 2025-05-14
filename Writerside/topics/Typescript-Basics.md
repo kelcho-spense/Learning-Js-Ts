@@ -29,7 +29,7 @@ In TypeScript, variables are assigned types to enforce type safety. These types 
 * **undefined**: Represents an undefined value (a variable that has been declared but not assigned a value).
 * **void**: Used when there is no return value for a function.
 
-#### Example:
+#### Example: {id="example_1"}
 
 ```typescript
 let age: number = 25;
@@ -66,17 +66,17 @@ In this example, `message` is annotated as a `string`, and `count` is annotated 
 
 In TypeScript, you can declare variables using the `let`, `const`, and `var` keywords.
 
-### `let`:
+### `let`: {id="let_1"}
 
 * Used to declare a block-scoped variable.
 * The value of `let`-declared variables can be changed.
 
-### `const`:
+### `const`: {id="const_1"}
 
 * Used to declare a block-scoped, read-only constant.
 * The value of a `const` variable cannot be changed after initialization.
 
-### `var`:
+### `var`: {id="var_1"}
 
 * **Function-scoped** variable declaration (more common in JavaScript).
 * It is less commonly used in TypeScript since `let` and `const` are more predictable.
