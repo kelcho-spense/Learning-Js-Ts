@@ -228,7 +228,3 @@ In this example, `K extends keyof T` ensures that `key` must be one of the keys 
 | **`keyof` with Generics** | Ensures that a key passed as a generic parameter is a valid key of the type's properties.             | `function getProperty<T, K extends keyof T>(obj: T, key: K)` |
 
 ---
-
-### **Conclusion**
-
-Generics in TypeScript allow you to define functions, classes, and interfaces that can work with any type while maintaining strong type safety. With generics, you can create more reusable and flexible code. By applying constraints, you can control the types used in generics, ensuring better type validation and avoiding potential errors.
