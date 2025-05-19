@@ -49,5 +49,6 @@
         <toc-element topic="DOM-in-TS.md"/>
         <toc-element topic="JS-Web-APIs-.md"/>
         <toc-element topic="DOM-Moview-Project.md"/>
+        <toc-element topic="QUERYING-DATA-IN-POSTGRES-SQL-USING-TYPESCRIPT-NODE.md"/>
     </toc-element>
 </instance-profile>
